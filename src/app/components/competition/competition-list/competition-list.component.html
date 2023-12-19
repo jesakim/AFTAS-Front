@@ -4,8 +4,8 @@
     <h4>
       Competitions
     </h4>
-    <a routerLink="/competitions/create" class="btn shadow mb-3 rounded"
-      style="background-color: #0c151e; color:#f9eeb9"> <b>+</b> Add competition</a>
+    <a routerLink="/competitions/create" class="btn mb-3 btn-primary"
+      > <b>+</b> Add competition</a>
   </div>
   <div class="  bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
     <div class="mb-3">
@@ -40,14 +40,14 @@
             <td>{{ competition.endTime }}</td>
             <td>{{ competition.numberOfParticipants }}</td>
             <td>{{ competition.location }}</td>
-            <td style="color: #ff0a0a; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ competition.status }}
+            <td>{{ competition.status }}
             </td>
             <td>{{ competition.amount }}</td>
             <td>
               <button class="btn btn-outline-warning "
                 (click)="viewCompetitionDetails(competition.id)">List M</button>
-              <button class="btn btn-outline-danger "
-                (click)="deleteCompetition(competition.id)">Delete</button>
+              <!-- <button class="btn btn-outline-danger "
+                (click)="deleteCompetition(competition.id)">Delete</button> -->
               <button class="btn btn-outline-info"
                 (click)="calculateAndAssignScores(competition.id)">
                 Calculate

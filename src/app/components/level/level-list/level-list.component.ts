@@ -28,15 +28,6 @@ export class LevelListComponent implements OnInit {
     );
   }
 
-  viewLevel(id: number): void {
-    console.log(`View level with code ${id}`);
-
-  }
-
-  editLevel(id: number): void {
-    console.log(`Delete level with code ${id}`);
-  }
-
   deleteLevel(id: number): void {
     this.levelService.deleteLevel(id).subscribe(
       () => {

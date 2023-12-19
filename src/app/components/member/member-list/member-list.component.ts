@@ -35,14 +35,6 @@ export class MemberListComponent implements OnInit {
     );
   }
 
-  viewMember(num: number): void {
-    console.log(`View member with number ${num}`);
-  }
-
-  editMember(num: number): void {
-    console.log(`Edit member with number ${num}`);
-  }
-
   deleteMember(num: number): void {
     this.memberService.deleteMember(num).subscribe(
       () => {

@@ -25,7 +25,7 @@ export class LevelCreateComponent {
     this.levelService.saveLevel(this.newLevel).subscribe(
       (createdLevel) => {
         console.log('Level created successfully:', createdLevel);
-        this.showSuccessToast();
+        // this.showSuccessToast();
         this.router.navigate(['/levels']);
       },
       (error) => {
