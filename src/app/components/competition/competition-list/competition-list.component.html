@@ -1,0 +1,74 @@
+<div id="toast-container" class="position-fixed top-0 let p-3" style="z-index: 11"></div>
+<div class=" mt-5  ">
+  <div class="d-flex justify-content-between">
+    <h4>
+      Competitions
+    </h4>
+    <a routerLink="/competitions/create" class="btn shadow mb-3 rounded"
+      style="background-color: #0c151e; color:#f9eeb9"> <b>+</b> Add competition</a>
+  </div>
+  <div class="  bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
+    <div class="mb-3">
+      <label for="statusFilter" class="form-label">Filter by Status:</label>
+      <select class="form-select  border-bottom border-0 border-secondary border-3" id="statusFilter"
+        [(ngModel)]="selectedStatus" (change)="updateFilteredCompetitions()">
+        <option value="" selected>All</option>
+        <option value="Upcoming">Upcoming</option>
+        <option value="Closed">Closed</option>
+      </select>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0 bg-white btn-rounded p-2">
+        <thead class="bg-light">
+          <tr>
+            <th>Code</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Participants</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let competition of filteredCompetitions">
+            <td>{{ competition.code }}</td>
+            <td>{{ competition.date | date:'yyyy-MM-dd' }}</td>
+            <td>{{ competition.startTime }}</td>
+            <td>{{ competition.endTime }}</td>
+            <td>{{ competition.numberOfParticipants }}</td>
+            <td>{{ competition.location }}</td>
+            <td style="color: #ff0a0a; font-family: Impact, 'Arial Narrow Bold', sans-serif;">{{ competition.status }}
+            </td>
+            <td>{{ competition.amount }}</td>
+            <td>
+              <button class="btn btn-outline-warning "
+                (click)="viewCompetitionDetails(competition.id)">List M</button>
+              <button class="btn btn-outline-danger "
+                (click)="deleteCompetition(competition.id)">Delete</button>
+              <button class="btn btn-outline-info"
+                (click)="calculateAndAssignScores(competition.id)">
+                Calculate
+              </button>
+              <button class="btn btn-outline-dark "
+                (click)="redirectToGetRankingsByCompetition(competition.id)">
+                Result
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3"> <mat-paginator class="fw-bolder "
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[2, 10, 25, 100]"
+        (page)="onPageChange($event)"
+      ></mat-paginator>
+    </div>
+
+  </div>
+</div>

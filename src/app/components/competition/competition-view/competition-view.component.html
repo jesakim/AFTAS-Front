@@ -1,0 +1,22 @@
+<div class="text-center"><a routerLink="/rankings/create" class=" btn btn-primary mb-3">
+  <b>+</b> Add Member To Competition
+</a>
+</div>
+
+<div class="mt-3 p-3 bg-white rounded shadow">
+    <h3> Members</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Member Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let member of members" class="shadow-sm p-2 mb-2 bg-light rounded">
+                <td> {{ member.name }}</td>
+                <td> {{ member.num }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
