@@ -16,21 +16,8 @@
         <option *ngFor="let competition of competitions" [value]="competition.id">{{ competition.code }}</option>
       </select>
     </div>
-    <div class="mb-3">
-      <label for="rank" class="form-label">Rank</label>
-      <input type="number" class="form-control border-bottom border-0 border-secondary border-3" id="rank"
-        formControlName="rank" required>
-    </div>
-    <div class="mb-3">
-      <label for="score" class="form-label">Score</label>
-      <input type="number" class="form-control border-bottom border-0 border-secondary border-3" id="score"
-        formControlName="score" required>
-    </div>
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary shadow rounded"
-        style="background-color: #0c151e; color: #f9eeb9;">Submit</button>
-      <button routerLink="/rankings" type="submit" class="mx-2 btn shadow rounded"
-        style="background-color: #1978d6; color: #f9eeb9;">Huntings</button>
+      <button type="submit" class="btn btn-primary ">Submit</button>
     </div>
   </form>
 </div>
