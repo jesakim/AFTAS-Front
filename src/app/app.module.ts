@@ -35,10 +35,13 @@ import { HuntingListComponent } from './components/hunting/hunting-list/hunting-
 import { HeadComponent } from './components/head/head.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ScriptComponent } from './components/script/script.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 
@@ -73,8 +76,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HuntingUpdateComponent,
     HuntingCreateComponent,
     HuntingListComponent,
-    
-    TimeFormatPipe
+    TimeFormatPipe,
+    LoginComponent,
+    RegisterComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +89,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatPaginatorModule,
     FormsModule
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+      {provide: HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi:true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

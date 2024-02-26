@@ -67,16 +67,16 @@ export class CompetitionListComponent implements OnInit {
   }
 
   viewCompetitionDetails(competitionId: number): void {
-    this.router.navigate(['/competitions/view', competitionId]);
+    this.router.navigate(['dashboard/competitions/view', competitionId]);
   }
 
   editCompetition(id: number): void {
-    this.router.navigate(['/competitions/update/', id]);
+    this.router.navigate(['dashboard/competitions/update/', id]);
     console.log(`Edit competition with id ${id}`);
   }
 
   redirectToGetRankingsByCompetition(competitionId: number): void {
-    this.router.navigate(['/rankings/view', competitionId]);
+    this.router.navigate(['dashboard/rankings/view', competitionId]);
     console.log(` RankingsByCompetition with id ${competitionId}`);
   }
 

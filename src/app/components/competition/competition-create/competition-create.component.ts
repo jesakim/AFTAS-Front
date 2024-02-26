@@ -55,7 +55,7 @@ export class CompetitionCreateComponent {
 
     this.competitionService.saveCompetition(this.newCompetition).subscribe(
       (createdCompetition) => {
-        this.router.navigate(['/competitions']);
+        this.router.navigate(['dashboard/competitions']);
       },
       (error) => {
         console.error('Error creating competition:', error);

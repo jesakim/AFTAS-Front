@@ -24,44 +24,55 @@ import { HuntingViewComponent } from './components/hunting/hunting-view/hunting-
 import { HuntingUpdateComponent } from './components/hunting/hunting-update/hunting-update.component';
 import { HuntingCreateComponent } from './components/hunting/hunting-create/hunting-create.component';
 import { HuntingListComponent } from './components/hunting/hunting-list/hunting-list.component';
+import { notAuthGuard } from './guards/not-auth.guard';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { authGuard } from './guards/auth.guard';
+import { roleGuard } from './guards/role.guard';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: 'rankings', component: RankingListComponent },
-  { path: 'rankings/create', component: RankingCreateComponent },
-  { path: 'rankings/update/:id', component: RankingUpdateComponent },
-  { path: 'rankings/view/:id', component: RankingViewComponent },
-  
-  { path: 'levels', component: LevelListComponent },
-  { path: 'levels/create', component: LevelCreateComponent },
-  { path: 'levels/update/:code', component: LevelUpdateComponent },
-  { path: 'levels/view/:code', component: LevelViewComponent },
-  
-  { path: 'competitions', component: CompetitionListComponent },
-  { path: 'competitions/create', component: CompetitionCreateComponent },
-  { path: 'competitions/update/:code', component: CompetitionUpdateComponent },
-  { path: 'competitions/view/:id', component: CompetitionViewComponent },
 
-  
-  
-  { path: 'members', component: MemberListComponent },
-  { path: 'members/create', component: MemberCreateComponent },
-  { path: 'members/update/:num', component: MemberUpdateComponent },
-  { path: 'members/view/:num', component: MemberViewComponent },
-  
-  { path: 'fish', component: FishListComponent },
-  { path: 'fish/create', component: FishCreateComponent },
-  { path: 'fish/update/:id', component: FishUpdateComponent },
-  { path: 'fish/view/:id', component: FishViewComponent },
-  
-  { path: 'hunting', component: HuntingListComponent },
-  { path: 'hunting/create', component: HuntingCreateComponent },
-  { path: 'hunting/update/:id', component: HuntingUpdateComponent },
-  { path: 'hunting/view/:id', component: HuntingViewComponent },
-  { path: 'fishes', component: FishListComponent },
-  
+  { path: 'login', component: LoginComponent ,pathMatch: 'full',canActivate: [notAuthGuard]},
+  { path:'register',component:RegisterComponent ,pathMatch: 'full',canActivate: [notAuthGuard]},
+  { path: '', redirectTo:'dashboard/competitions', pathMatch: 'full'},
 
-];
-
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard],
+    children: [
+      { path: 'rankings', component: RankingListComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'rankings/create', component: RankingCreateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'rankings/update/:id', component: RankingUpdateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'rankings/view/:id', component: RankingViewComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      
+      { path: 'levels', component: LevelListComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }},
+      { path: 'levels/create', component: LevelCreateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'levels/update/:code', component: LevelUpdateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'levels/view/:code', component: LevelViewComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      
+      { path: 'competitions', component: CompetitionListComponent, canActivate: [authGuard]},
+      { path: 'competitions/create', component: CompetitionCreateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER','JUDGE'] }  },
+      { path: 'competitions/update/:code', component: CompetitionUpdateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER','JUDGE'] }  },
+      { path: 'competitions/view/:id', component: CompetitionViewComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER','JUDGE'] }  },
+      
+      { path: 'members', component: MemberListComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'members/create', component: MemberCreateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'members/update/:num', component: MemberUpdateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'members/view/:num', component: MemberViewComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      
+      { path: 'fish', component: FishListComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'fish/create', component: FishCreateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'fish/update/:id', component: FishUpdateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'fish/view/:id', component: FishViewComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      
+      { path: 'hunting', component: HuntingListComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'hunting/create', component: HuntingCreateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'hunting/update/:id', component: HuntingUpdateComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'hunting/view/:id', component: HuntingViewComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+      { path: 'fishes', component: FishListComponent, canActivate: [authGuard,roleGuard], data: { role: ['MANAGER'] }  },
+    ]
+  },
+    ];
+    
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

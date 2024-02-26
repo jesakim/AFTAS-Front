@@ -26,7 +26,7 @@ export class LevelCreateComponent {
       (createdLevel) => {
         console.log('Level created successfully:', createdLevel);
         // this.showSuccessToast();
-        this.router.navigate(['/levels']);
+        this.router.navigate(['dashboard/levels']);
       },
       (error) => {
         console.error('Error creating level:', error);

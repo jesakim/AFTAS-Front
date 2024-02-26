@@ -57,7 +57,7 @@ export class FishCreateComponent implements OnInit {
       (createdFish) => {
         console.log('Fish created successfully:', createdFish);
         this.showSuccessToast();
-        this.router.navigate(['/fishes']);
+        this.router.navigate(['dashboard/fishes']);
       },
       (error) => {
         console.error('Error creating fish:', error);

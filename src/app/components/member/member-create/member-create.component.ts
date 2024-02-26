@@ -28,7 +28,7 @@ export class MemberCreateComponent {
     this.memberService.saveMember(this.newMember).subscribe(
       (createdMember) => {
         console.log('Member created successfully:', createdMember);
-        this.router.navigate(['/members']);
+        this.router.navigate(['dashboard/members']);
       },
       (error) => {
         console.error('Error creating member:', error);

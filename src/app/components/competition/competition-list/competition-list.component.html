@@ -4,7 +4,7 @@
     <h4>
       Competitions
     </h4>
-    <a routerLink="/competitions/create" class="btn mb-3 btn-primary"
+    <a routerLink="./create" class="btn mb-3 btn-primary"
       > <b>+</b> Add competition</a>
   </div>
   <div class="  bg-white rounded-4 shadow p-3 mb-5 bg-body-tertiar my-3">
@@ -62,11 +62,12 @@
       </table>
     </div>
 
-    <div class="d-flex justify-content-center mt-3"> <mat-paginator class="fw-bolder "
+    <div class="d-flex justify-content-center mt-3">
+      <mat-paginator class="fw-bolder "
         [length]="totalItems"
         [pageSize]="pageSize"
-        [pageSizeOptions]="[2, 10, 25, 100]"
         (page)="onPageChange($event)"
+        [hidePageSize]="true"
       ></mat-paginator>
     </div>
 
